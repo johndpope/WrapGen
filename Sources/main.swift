@@ -8,12 +8,36 @@ enum ExportType: String {
     case optionSet = "options"
 }
 
+
 let cmdLine = CommandLineKit.CommandLine()
 
 let file = StringOption(shortFlag: "f",
                         longFlag: "file",
                         required: true,
                         helpMessage: "The file you're trying to parse")
+cmdLine.addOptions(file)
+do {
+    try cmdLine.parse()
+
+    let index = Index()
+    
+    
+    let tu = try TranslationUnit(index: index,
+                                     filename: file.value!,
+                                     commandLineArgs: [
+                                        "-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
+                                        "-I/usr/local/opt/llvm/include"
+    ])
+    
+    for enumDecl in tu.allEnums(){
+        print("enum:",enumDecl.enumDecl)
+    }
+    
+
+}catch {
+    print("error: \(error)")
+    exit(1)
+}
 
 let symbol = StringOption(shortFlag: "s",
                           longFlag: "symbol",
@@ -39,7 +63,8 @@ let exportType = EnumOption<ExportType>(shortFlag: "t",
                                         required: true,
                                         helpMessage: "The type of conversion you're applying")
 
-cmdLine.addOptions(file, symbol, useLLVMPrefix, regexExtraction, newType, suffix, exportType)
+cmdLine.addOptions(symbol, useLLVMPrefix, regexExtraction, newType, suffix, exportType)
+let extraction: Extraction
 
 do {
     try cmdLine.parse()
@@ -52,11 +77,13 @@ do {
                                     "-I/usr/local/opt/llvm/include"
         ])
 
+   
+    
     guard let enumDecl = tu.findEnum(name: symbol.value!) else {
         throw "Could not find symbol \(symbol.value!)"
     }
 
-    let extraction: Extraction
+    
     if useLLVMPrefix.value {
         extraction = .llvm(symbol: symbol.value!)
     } else if let regex = regexExtraction.value {
@@ -83,6 +110,9 @@ do {
                                name: newType.value!)
     }
 } catch {
+
     print("error: \(error)")
     exit(-1)
 }
+
+

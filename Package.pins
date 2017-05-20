@@ -1,0 +1,24 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "Clang",
+      "reason": null,
+      "repositoryURL": "/Users/johndpope/Documents/gitWorkspace/ClangSwift",
+      "version": "0.0.4"
+    },
+    {
+      "package": "CommandLine",
+      "reason": null,
+      "repositoryURL": "https://github.com/harlanhaskins/CommandLine.git",
+      "version": "3.0.0"
+    },
+    {
+      "package": "cclang",
+      "reason": null,
+      "repositoryURL": "https://github.com/trill-lang/cclang",
+      "version": "0.0.1"
+    }
+  ],
+  "version": 1
+}
