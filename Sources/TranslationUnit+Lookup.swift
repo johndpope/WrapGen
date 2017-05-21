@@ -61,7 +61,7 @@ extension TranslationUnit {
     }
 
     
-    func dumpClassHeaders()  {
+    func generateClassHeaders()  {
         var decls = [EnumDeclString]()
 
         for child in cursor.children() {

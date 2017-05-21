@@ -40,7 +40,8 @@ do {
                                         "-I/usr/local/opt/llvm/include"
     ])
     
-    tu.dumpClassHeaders()
+    // TODO - work out how
+    tu.generateClassHeaders()
     
 
 }catch {
