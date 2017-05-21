@@ -50,6 +50,21 @@ extension TranslationUnit {
             if let enumDecl = child as? EnumDecl {
                 let obj = EnumDeclString(enumDecl,  "enum \(enumDecl)")
                 decls.append(obj)
+                
+               // if let newTypeValue = newType.value{
+                //    generateStructs(forEnum: enumDecl,
+                //                    type: newTypeValue,
+                //                    extraction: extraction,
+                 //                   suffix: suffix.value ?? "")
+               // }else{
+                    generateStructs(forEnum: enumDecl,
+                                    type: enumDecl.description,
+                                    extraction: extraction,
+                                    suffix:  "")
+               // }
+               
+
+                
             } else if let decl = child as? TypedefDecl,
                 let underlying = decl.underlying,
                 let enumDecl = underlying.declaration as? EnumDecl{
