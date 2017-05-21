@@ -9,6 +9,10 @@ libclang-style enums.
 WrapGen --file /path/to/C/file.h --symbol CXNameOfEnumInLibClang --name IntendedNameOfEnumInSwift --type [enum|options|structs]
 ```
 
+
+tensorflow c_api [c_api](https://github.com/johndpope/WrapGen/blob/genbind/c_api.h) 
+
+
 I'd recommend playing around with the flags for a bit to see what you want to
 generate.
 
@@ -20,3 +24,6 @@ Harlan Haskins ([@harlanhaskins](https://github.com/harlanhaskins))
 
 WrapGen is released under the MIT license, a copy of which is available in this
 repo.
+
+
+
