@@ -53,17 +53,22 @@ extension TranslationUnit {
                 let obj = EnumDeclString(enumDecl,  "enum \(enumDecl)")
                 decls.append(obj)
                 
-               // if let newTypeValue = newType.value{
-                //    generateStructs(forEnum: enumDecl,
-                //                    type: newTypeValue,
-                //                    extraction: extraction,
-                 //                   suffix: suffix.value ?? "")
-               // }else{
+              
                     generateStructs(forEnum: enumDecl,
                                     type: enumDecl.description,
                                     extraction: extraction,
                                     suffix:  "")
-               // }
+               
+                generateSwiftEnum(forEnum: enumDecl,
+                                  enumName: enumDecl.description,
+                                  extraction: extraction,
+                                  name: enumDecl.description)
+                
+                generateSwiftOptionSet(forEnum: enumDecl,
+                                    enumName: enumDecl.description,
+                                    extraction: extraction,
+                                    name: enumDecl.description)
+                
                
 
                 
