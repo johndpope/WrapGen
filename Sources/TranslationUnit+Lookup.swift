@@ -47,6 +47,8 @@ extension TranslationUnit {
         var decls = [EnumDeclString]()
 
         for child in cursor.children() {
+            
+            var fnParams:[String] = ["func "]
             if let enumDecl = child as? EnumDecl {
                 let obj = EnumDeclString(enumDecl,  "enum \(enumDecl)")
                 decls.append(obj)
@@ -71,28 +73,47 @@ extension TranslationUnit {
                 let obj = EnumDeclString(enumDecl,  "\(underlying)")
                 decls.append(obj)
             }else if let fn = child as? FunctionDecl{
-                print("func ",fn,"()")
+               
+                fnParams.append("\(fn.description)(") // eg. [func  ,TF_DeleteLibraryHandle(]
                 for i in 0...20{
+                    
+                    var bPeakAhead = false
+                    if let _ = fn.parameter(at: i+1){
+                        bPeakAhead = true
+                    }
                     if let param = fn.parameter(at: i){
-                        
+                        let n = param.children().count
                         for parameterType in param.children(){
                             let param = "\(param.description) : \(parameterType)"
-                            print(param)
+                            fnParams.append(param)
                         }
+                        if (bPeakAhead){
+                            if (n > 0){
+                              fnParams.append(",")
+                            }
+                        }
+                    }else{
+                        fnParams.append(")")
+                        break;
+                        
                     }
+                    
                 }
+                
                 if let rType = fn.resultType{
-                   print("->", rType)
                     let cStr = rType.description
                     if(cStr == "const char *"){
-                        print("-> UnsafeMutablePointer<CChar>.self")
+                        fnParams.append(" -> UnsafeMutablePointer<CChar>.self")
                     }
                     
                     if(cStr == "void"){
-                        print("-> void")
+                        fnParams.append(" -> Void")
                     }
                     //
                 }
+                let fnDefinition =  fnParams.joined()
+                print(fnDefinition)
+                
             }else if let _ = child as? TypedefDecl {
                 print("TypedefDecl:",child)
             }else if let structDecl = child as? StructDecl {
