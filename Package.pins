@@ -2,6 +2,12 @@
   "autoPin": true,
   "pins": [
     {
+      "package": "CKit",
+      "reason": null,
+      "repositoryURL": "https://github.com/michael-yuji/CKit.git",
+      "version": "0.0.8"
+    },
+    {
       "package": "Clang",
       "reason": null,
       "repositoryURL": "/Users/johndpope/Documents/gitWorkspace/ClangSwift",
@@ -14,10 +20,22 @@
       "version": "3.0.0"
     },
     {
+      "package": "StreamReader",
+      "reason": null,
+      "repositoryURL": "https://github.com/hectr/swift-stream-reader.git",
+      "version": "0.2.0"
+    },
+    {
       "package": "cclang",
       "reason": null,
       "repositoryURL": "https://github.com/trill-lang/cclang",
       "version": "0.0.1"
+    },
+    {
+      "package": "xlibc",
+      "reason": null,
+      "repositoryURL": "https://github.com/michael-yuji/xlibc.git",
+      "version": "0.0.2"
     }
   ],
   "version": 1

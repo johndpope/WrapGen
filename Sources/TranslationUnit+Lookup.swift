@@ -9,7 +9,6 @@
 import Foundation
 import Clang
 
-
 struct EnumDeclString  {
     var enumDecl: EnumDecl
     var str: String
@@ -47,9 +46,11 @@ extension TranslationUnit {
         var decls = [EnumDeclString]()
 
         for child in cursor.children() {
+
             
             var fnParams:[String] = ["func "]
             if let enumDecl = child as? EnumDecl {
+                
                 let obj = EnumDeclString(enumDecl,  "enum \(enumDecl)")
                 decls.append(obj)
                 
@@ -112,7 +113,7 @@ extension TranslationUnit {
                     }
                     
                     if(cStr == "void"){
-                        fnParams.append(" -> Void")
+                        fnParams.append(" ->  UnsafePointer<Void>")
                     }
                     //
                 }

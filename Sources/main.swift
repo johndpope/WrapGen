@@ -1,6 +1,8 @@
 import CommandLineKit
 import Clang
 import Foundation
+import StreamReader
+
 
 enum ExportType: String {
     case `struct` = "struct"
@@ -21,7 +23,12 @@ do {
 
     let index = Index()
     
+    let streamReader = StreamReader(path:file.value!)
+    if let str = streamReader?.nextLine(){
+        print("str:",str)
+    }
     
+   
     let tu = try TranslationUnit(index: index,
                                      filename: file.value!,
                                      commandLineArgs: [
