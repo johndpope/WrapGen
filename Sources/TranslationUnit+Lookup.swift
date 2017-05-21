@@ -42,7 +42,26 @@ extension Array where Element : Equatable {
 }
 
 extension TranslationUnit {
+    
     func allEnums() -> [EnumDeclString] {
+        var decls = [EnumDeclString]()
+        
+        for child in cursor.children() {
+            if let enumDecl = child as? EnumDecl {
+                let obj = EnumDeclString(enumDecl,  "enum \(enumDecl)")
+                decls.append(obj)
+            } else if let decl = child as? TypedefDecl,
+                let underlying = decl.underlying,
+                let enumDecl = underlying.declaration as? EnumDecl{
+                let obj = EnumDeclString(enumDecl,  "\(underlying)")
+                decls.append(obj)
+            }
+        }
+        return decls.distinct()
+    }
+
+    
+    func dumpClassHeaders()  {
         var decls = [EnumDeclString]()
 
         for child in cursor.children() {
@@ -144,7 +163,7 @@ extension TranslationUnit {
             
             print("\n\n")
         }
-        return decls.distinct()
+       
     }
     func findEnum(name: String) -> EnumDecl? {
         for child in cursor.children() {

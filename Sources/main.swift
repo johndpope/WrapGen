@@ -24,8 +24,12 @@ do {
     let index = Index()
     
     let streamReader = StreamReader(path:file.value!)
-    if let str = streamReader?.nextLine(){
-        print("str:",str)
+    
+    while let str = streamReader?.nextLine(){
+        if (str.contains("extern size_t")){
+           print("found -> ",str)
+        }
+        
     }
     
    
@@ -36,9 +40,7 @@ do {
                                         "-I/usr/local/opt/llvm/include"
     ])
     
-    for enumDecl in tu.allEnums(){
-        print("enum:",enumDecl.enumDecl)
-    }
+    tu.dumpClassHeaders()
     
 
 }catch {
