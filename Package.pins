@@ -22,8 +22,8 @@
     {
       "package": "StreamReader",
       "reason": null,
-      "repositoryURL": "https://github.com/hectr/swift-stream-reader.git",
-      "version": "0.2.0"
+      "repositoryURL": "https://github.com/johndpope/swift-stream-reader.git",
+      "version": "0.2.1"
     },
     {
       "package": "cclang",
