@@ -10,7 +10,7 @@
     {
       "package": "Clang",
       "reason": null,
-      "repositoryURL": "/Users/jp/Documents/gitWorkspace/ClangSwift",
+      "repositoryURL": "../ClangSwift",
       "version": "0.0.4"
     },
     {
