@@ -13,7 +13,7 @@ $(DBGLIB): Sources/*
 	rm -rf .build
 	swift package clean
 	swift package reset
-	swift package  $(SFLAGS)   generate-xcodeproj
+	swift package  $(SFLAGS)   generate-xcodeproj  --xcconfig-overrides settings.xcconfig
 
 release: $(RELLIB)
 
